@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,6 +25,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "apps.core",
 ]
 
 MIDDLEWARE = [
@@ -39,7 +41,6 @@ MIDDLEWARE = [
 ROOT_URLCONF = "shopify_crm.urls"
 
 TEMPLATES_DIR = BASE_DIR / 'templates'
-
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -106,7 +107,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = (
+print(os.path.join(BASE_DIR, 'static'))
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
-)
+]
