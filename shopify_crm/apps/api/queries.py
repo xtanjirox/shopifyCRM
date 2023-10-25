@@ -1,8 +1,12 @@
-from ninja import Schema
 from typing import List
+from ninja import Schema
 
 
 class InsertProduct(Schema):
-    product_name: str
-    product_price: float
-    product_image: List[str] = None
+    title: str
+    body_html: str = None
+    vendor: str = None
+    product_type: str = None
+    variants: List[str] = None
+    images: List[str] = ["1", "2", "3"]
+    status: str = "draft"

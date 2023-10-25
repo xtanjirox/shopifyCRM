@@ -1,9 +1,8 @@
-from .product import router as product_router
-from ninja import NinjaAPI
-from ninja_extra import NinjaExtraAPI
-from django.urls import path
 from django.contrib import admin
+from django.urls import path
+from ninja_extra import NinjaExtraAPI
 
+from .product import router as product_router
 
 api = NinjaExtraAPI()
 
