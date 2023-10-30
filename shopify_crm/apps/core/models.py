@@ -31,6 +31,9 @@ class OptionProduct(models.Model):
     class Meta:
         db_table = 'option_product'
 
+    def __str__(self):
+        return self.option1
+
 
 class ProductImage(models.Model):
     image_link = models.CharField(max_length=150)
@@ -38,13 +41,16 @@ class ProductImage(models.Model):
     class Meta:
         db_table = 'product_image_shopify'
 
+    def __str__(self):
+        return self.image_link
+
 
 class Product(models.Model):
     title = models.CharField(max_length=150)
     status = models.IntegerField(choices=ProductStatus.choices, blank=True, null=True)
     body_html = models.CharField(max_length=150, blank=True, null=True)
     handle = models.CharField(max_length=150, blank=True, null=True)
-    image = models.ManyToManyField(ProductImage)
+    image = models.ManyToManyField(ProductImage, blank=True, null=True)
     options = models.CharField(max_length=150, blank=True, null=True)
     product_type = models.CharField(max_length=150, blank=True, null=True)
     published_scope = models.IntegerField(choices=PublishedScope.choices, blank=True, null=True)
@@ -58,6 +64,9 @@ class Product(models.Model):
 
     class Meta:
         db_table = 'product'
+
+    def __str__(self):
+        return self.title
 
 
 class ProductVariant(models.Model):
