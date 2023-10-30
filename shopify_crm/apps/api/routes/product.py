@@ -3,6 +3,7 @@ from ninja import Router
 from ninja_extra import NinjaExtraAPI
 import requests
 import json
+from apps.core import models
 
 api = NinjaExtraAPI()
 router = Router()
@@ -16,11 +17,10 @@ def insert_product(request, product: queries.InsertProduct):
             "body_html": product.body_html,
             "vendor": product.vendor,
             "product_type": product.product_type,
-            "status": product.status,
+            "status": models.ProductStatus.choices[product.status][1],
             "variants": product.variants,
             "images": product.images
         }
-    print(var)
     payload = json.dumps({
         "product": var
     })
@@ -30,9 +30,15 @@ def insert_product(request, product: queries.InsertProduct):
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
-    if response.status_code == 200:
-        print(f'success: {response.text}')
+    if response.status_code == 201:
+        product_instance = models.Product(
+            title=product.title,
+            body_html=product.body_html,
+            vendor=product.vendor,
+            status=product.status,
+        )
+        product_instance.save()
+        print(product_instance)
     else:
         print(f'error :{response.text}')
-    print(response.content)
     return 200
