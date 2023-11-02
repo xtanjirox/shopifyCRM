@@ -13,14 +13,14 @@ router = Router()
 def insert_product(request, product: queries.InsertProduct):
     url = "https://reeza01.myshopify.com/admin/api/2023-07/products.json"
     var = {
-            "title": product.title,
-            "body_html": product.body_html,
-            "vendor": product.vendor,
-            "product_type": product.product_type,
-            "status": models.ProductStatus.choices[product.status][1],
-            "variants": product.variants,
-            "images": product.images
-        }
+        "title": product.title,
+        "body_html": product.body_html,
+        "vendor": product.vendor,
+        "product_type": product.product_type,
+        "status": models.ProductStatus.choices[product.status][1],
+        "variants": product.variants,
+        "images": product.images
+    }
     payload = json.dumps({
         "product": var
     })
@@ -31,14 +31,7 @@ def insert_product(request, product: queries.InsertProduct):
 
     response = requests.request("POST", url, headers=headers, data=payload)
     if response.status_code == 201:
-        product_instance = models.Product(
-            title=product.title,
-            body_html=product.body_html,
-            vendor=product.vendor,
-            status=product.status,
-        )
-        product_instance.save()
-        print(product_instance)
+        models.Product.objects.filter(pk=product.id_product).update(publish_status=True)
     else:
         print(f'error :{response.text}')
     return 200

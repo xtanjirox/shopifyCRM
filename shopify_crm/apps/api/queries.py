@@ -3,6 +3,7 @@ from ninja import Schema
 
 
 class InsertProduct(Schema):
+    id_product: int
     title: str
     status: int = 1
     body_html: str = None

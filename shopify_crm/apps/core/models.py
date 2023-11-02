@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.urls import reverse_lazy
 
 
 class ProductStatus(models.IntegerChoices):
@@ -58,6 +59,7 @@ class Product(models.Model):
     template_suffix = models.CharField(max_length=150, blank=True, null=True)
     product_variants = models.CharField(max_length=150, blank=True, null=True)
     vendor = models.CharField(max_length=50, blank=True, null=True)
+    publish_status = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=datetime.now())
     published_at = models.DateTimeField(default=datetime.now())
     updated_at = models.DateTimeField(default=datetime.now())
@@ -67,6 +69,12 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse_lazy('product-update', kwargs={"pk": self.pk})
+
+    def get_delete_url(self):
+        return reverse_lazy('product-delete', kwargs={"pk": self.pk})
 
 
 class ProductVariant(models.Model):

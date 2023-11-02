@@ -1,0 +1,41 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 12345,
+            "driver": "PostgreSQL",
+            "name": "preprod",
+            "database": "image-compliance-preprod",
+            "username": "image-compliance",
+            "password": "0z&c\"-4[PJfj.}f4"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 12346,
+            "driver": "PostgreSQL",
+            "name": "prod",
+            "database": "image-compliance-prod",
+            "username": "image-compliance",
+            "password": "^&xTY9^Ib>gCmnlj"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "ShpifyCRM_mehdi",
+            "database": "${workspaceFolder:ShpifyCRM}/shopify_crm/db_mehdi.sqlite3"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "ShpifyCRM_yassine",
+            "database": "${workspaceFolder:ShpifyCRM}/shopify_crm/db_yassine.sqlite3"
+        }
+    ],
+    "sqltools.useNodeRuntime": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "python.formatting.provider": "none"
+}
