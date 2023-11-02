@@ -1,0 +1,30 @@
+{% extends "pages/base.html" %}
+<title>{% block title %}Shopify CRM - Create Product{% endblock title%}</title>
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-lg-12">
+            <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                    <div class="iq-header-title">
+                        <h4 class="card-title">Create Product</h4>
+                    </div>
+                </div>
+                <div class="iq-card-body">
+                    <form class="needs-validation" method="POST" novalidate>
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label>Product Title</label>
+                                {{ form.title }}
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit" value="Save">Submit form</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%  endblock content %}
